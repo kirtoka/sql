@@ -6,7 +6,7 @@ create or replace PROCEDURE Sendmail(
  message     IN VARCHAR2)
 AS
 -- mailhost VARCHAR2 (30) := '192.168.2.36';
-mailhost                      VARCHAR2 (30) :='10.100.9.244';--10.100.8.109';
+mailhost     VARCHAR2 (30) :='10.100.9.244';--10.100.8.109';
  mail_conn UTL_SMTP.CONNECTION;
  crlf VARCHAR2(2) := CHR (13) || CHR (10);
  l_message_2  VARCHAR2(4000) := message;
