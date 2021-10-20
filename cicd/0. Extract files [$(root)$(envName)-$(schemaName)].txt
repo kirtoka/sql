@@ -1,0 +1,12 @@
+variables:
+  appName: 'PPCS.SQL'
+  root: '$(PPCS_SQL_PCEPTPCS)'
+  envName: 'dev'
+  schemaName: 'PCEPTPCS_2044'
+
+steps:
+- task: ExtractFiles@1
+  displayName: 'Extract files [$(root)\$(envName)-$(schemaName)]'
+  inputs:
+    archiveFilePatterns: '.\drop\drop\$(appName).zip'
+    destinationFolder: '$(root)\$(envName)-$(schemaName)'

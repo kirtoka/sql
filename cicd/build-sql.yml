@@ -1,0 +1,22 @@
+parameters:
+- name: solution
+  type: string
+- name: projectName
+  type: string
+
+jobs:
+- job: ${{ parameters.projectName }}
+  displayName: ${{ parameters.solution }} (${{ parameters.projectName }})
+  continueOnError: false
+  workspace:
+    clean: outputs
+  steps:
+    - task: ArchiveFiles@2
+      inputs:
+        rootFolderOrFile: '$(Build.SourcesDirectory)/'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/${{ parameters.solution }}.zip'
+        replaceExistingArchive: true
+  
+    - task: PublishBuildArtifacts@1

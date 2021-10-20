@@ -1,0 +1,13 @@
+variables:
+  root: '$(PPCS_SQL_PCEPTPCS)'
+  envName: 'dev'
+  schemaName: 'PCEPTPCS_2044'
+
+steps:
+- powershell: |
+   Write-Host "Update root.."
+   $updatedRoot = "$(root)\$(envName)-$(schemaName)"
+   
+   Write-Host "##vso[task.setvariable variable=PPCS_SQL_PCEPTPCS;]$updatedRoot"
+   
+  displayName: 'Initialize variables'

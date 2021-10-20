@@ -1,0 +1,11 @@
+variables:
+  PPCS_SQL_PCEPTPCS: 'D:\Repos\PPCS.SQL'
+  schemaName: 'PCEPTPCS_2044'
+  envName: 'dev'
+
+steps:
+- powershell: |
+   Write-Host "Updated root: $(PPCS_SQL_PCEPTPCS)"
+   
+   & "sqlplus" /nolog @$(PPCS_SQL_PCEPTPCS)\$(schemaName)\V3_$(envName)_Release.sql
+  displayName: 'Update DB'

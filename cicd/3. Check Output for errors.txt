@@ -1,0 +1,19 @@
+variables:
+  PPCS_SQL_PCEPTPCS: 'D:\Repos\PPCS.SQL'
+  schemaName: 'PCEPTPCS_2044'
+
+steps:
+- powershell: |
+   $log = Get-ChildItem "$(PPCS_SQL_PCEPTPCS)\$(schemaName)\ReleaseOutput.log" | Sort {$_.LastWriteTime} | select -last 1
+               
+   Get-Content $log
+   
+   if (Get-Content $log | Select-String 'Error')
+   {
+      throw 'Something went wrong during DB update. Have a look at the log for details.'
+   }
+   if (Get-Content $log | Select-String 'SP2-')
+   {
+      throw 'Something went wrong during DB update. Have a look at the log for details.'
+   }
+  displayName: 'Check Output for errors'
